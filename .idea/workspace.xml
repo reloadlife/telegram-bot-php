@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a9d211d-fd40-4e8d-a1ab-0ba9d53f3cf4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/ReloadLife.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/getUpdates.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/methods.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Animation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Audio.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Chat.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/ChatMember.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/ChatPhoto.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Contact.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Document.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/File.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Game.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Location.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Message.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/MessageEntity.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/PhotoSize.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Sticker.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/User.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Venue.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Video.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/VideoNote.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/Voice.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/response.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,10 +13,19 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/composer.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="55" column="31" lean-forward="true" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/methods.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="75" column="7" lean-forward="true" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+            <state relative-caret-position="51">
+              <caret line="9" column="28" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -86,6 +71,7 @@
         <option value="$PROJECT_DIR$/src/types/Voice.php" />
         <option value="$PROJECT_DIR$/src/types/response.php" />
         <option value="$PROJECT_DIR$/src/methods.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
       </list>
     </option>
   </component>
@@ -124,6 +110,12 @@
               <item name="Telegram-Bot-PHP" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Telegram-Bot-PHP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Telegram-Bot-PHP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="types" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -136,7 +128,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -160,19 +152,19 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1546259927018</updated>
-      <workItem from="1546259928673" duration="1988000" />
+      <workItem from="1546259928673" duration="2602000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1988000" />
+    <option name="totallyTimeSpent" value="2602000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1785174" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1785174" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
@@ -376,8 +368,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/methods.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="75" column="7" lean-forward="true" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+        <state relative-caret-position="51">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="55" column="31" lean-forward="true" selection-start-line="55" selection-start-column="31" selection-end-line="55" selection-end-column="31" />
         </state>
       </provider>
     </entry>

@@ -1,0 +1,64 @@
+{
+  "name": "reloadlife/TgBotPHP",
+  "description": "PHP Telegram Bot.",
+  "type": "project",
+  "license": "AGPL-3.0-only",
+  "homepage": "https://reloadlife.me/Telegram-Bot-PHP",
+  "keywords": [
+    "telegram",
+    "mtproto",
+    "protocol",
+    "bytes",
+    "messenger",
+    "client",
+    "PHP",
+    "video",
+    "stickers",
+    "audio",
+    "files",
+    "GB"
+  ],
+  "conflict": {
+    "krakjoe/pthreads-polyfill": "*"
+  },
+  "require": {
+    "php": ">=7.0.0",
+    "ext-curl": "*",
+    "ext-mbstring": "*",
+    "ext-json": "*",
+    "ext-xml": "*"
+  },
+  "authors": [
+    {
+      "name": "MohammadMahdi Afshar",
+      "email": "me@reloadlife.me"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "TelegramBotPHP": "src/"
+    },
+    "files": [
+      "src/types/Animation.php",
+      "src/types/Chat.php",
+      "src/types/ChatPhoto.php",
+      "src/types/Document.php",
+      "src/types/Game.php",
+      "src/types/Message.php",
+      "src/types/PhotoSize.php",
+      "src/types/User.php",
+      "src/types/Video.php",
+      "src/types/Voice.php",
+      "src/types/Audio.php",
+      "src/types/ChatMember.php",
+      "src/types/Contact.php",
+      "src/types/File.php",
+      "src/types/Location.php",
+      "src/types/MessageEntity.php",
+      "src/types/Sticker.php",
+      "src/types/Venue.php",
+      "src/types/VideoNote.php",
+      "src/types/response.php"
+    ]
+  }
+}

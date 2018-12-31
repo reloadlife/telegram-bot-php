@@ -6,17 +6,9 @@
   "homepage": "https://reloadlife.me/Telegram-Bot-PHP",
   "keywords": [
     "telegram",
-    "mtproto",
-    "protocol",
-    "bytes",
-    "messenger",
     "client",
     "PHP",
-    "video",
-    "stickers",
-    "audio",
-    "files",
-    "GB"
+    "api"
   ],
   "conflict": {
     "krakjoe/pthreads-polyfill": "*"

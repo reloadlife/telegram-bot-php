@@ -2,6 +2,18 @@
 
 * just require everyfile in it (require all files in '/src' also '/src/types')
 
+OR
+
+use 
+```bash
+composer install
+```
+
+and then use
+```php
+require 'vendor/autoload.php'
+```
+
 
 # some examples
 
@@ -9,6 +21,9 @@
 <?php
 
 namespace TEST;
+
+require 'vendor/autoload.php'
+
 use TelegramBotPHP;
 
 $telegram = new methods ( 'TOKEN' );

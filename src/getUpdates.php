@@ -70,27 +70,26 @@
 
 		protected function update () {
 			$update = json_decode( file_get_contents( 'php://input' ) );
-			if (isset( $update -> message )) {
-				$update = $update -> message;
-			} elseif (isset( $update -> callback_query )) {
-				$update = $update -> callback_query;
-			} elseif (isset( $update -> edited_message )) {
-				$update = $update -> edited_message;
-			} elseif (isset( $update -> inline_query )) {
-				$update = $update -> inline_query;
-			} elseif (isset( $update -> chosen_inline_result )) {
-				$update = $update -> chosen_inline_result;
-			} elseif (isset( $update -> channel_post )) {
-				$update = $update -> channel_post;
-			} elseif (isset( $update -> edited_channel_post )) {
-				$update = $update -> edited_channel_post;
-			} elseif (isset( $update -> shipping_query )) {
-				$update = $update -> shipping_query;
-			} elseif (isset( $update -> pre_checkout_query )) {
-				$update = $update -> pre_checkout_query;
-			} else {
-				$update = new \stdClass();
+			$map = [
+				'message',
+				'callback_query',
+				'edited_message',
+				'inline_query',
+				'chosen_inline_result',
+			//	'channel_post',
+			//	'edited_channel_post',
+			//	'shipping_query',
+			//	'pre_checkout_query',
+			];
+			# comment/uncomment updateType to ignore/handle them
+			# thanks to @SubScript :)
+			foreach ($map as $m) {
+				if (isset( $update ->{$m} )) {
+					$update = $update->{$m};
+					break;
+				}
 			}
+			if (!isset($update)) $update = new \stdClass();
 			return $update;
 		}
 

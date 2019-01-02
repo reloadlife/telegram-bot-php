@@ -45,4 +45,5 @@ if ( $updates->text ) {
 
 * if you have any question about it you can contact me right there [Telegram](tg://resolve?domain=reloadlife) [Email: me@reloadlife.me](mailto:me@reloadlife.me)
 * if you liked it star project to support me and if you like me [Get me A cup of coffee](https://zarinp.al/216172)
-* enjoy :)
+* enjoy 
+* :)

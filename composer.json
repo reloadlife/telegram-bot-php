@@ -1,5 +1,5 @@
 {
-  "name": "reloadlife/TgBotPHP",
+  "name": "reloadlife/telegrambotphp",
   "description": "PHP Telegram Bot.",
   "type": "project",
   "license": "AGPL-3.0-only",
@@ -8,11 +8,12 @@
     "telegram",
     "client",
     "PHP",
-    "api"
+    "api",
+    "tg-bot",
+    "telegram-bot",
+    "bot", 
+    "sdk"
   ],
-  "conflict": {
-    "krakjoe/pthreads-polyfill": "*"
-  },
   "require": {
     "php": ">=7.0.0",
     "ext-curl": "*",

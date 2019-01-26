@@ -1,5 +1,5 @@
 {
-  "name": "reloadlife/telegrambotphp",
+  "name": "reloadlife/php-telegram-bot",
   "description": "PHP Telegram Bot.",
   "type": "project",
   "license": "AGPL-3.0-only",

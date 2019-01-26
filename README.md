@@ -9,6 +9,12 @@ use
 composer install
 ```
 
+OR
+
+```bash
+composer require reloadlife/php-telegram-bot
+```
+
 and then use
 ```php
 require 'vendor/autoload.php'
@@ -35,7 +41,7 @@ if ( $updates->text ) {
         'text' => $updates->text,
     ]);
 }
-
+// will returns what ever it receives as text message .
 // :)
 
 ```
@@ -44,6 +50,6 @@ if ( $updates->text ) {
 # ?
 
 * if you have any question about it you can contact me right there [Telegram](tg://resolve?domain=reloadlife) [Email: me@reloadlife.me](mailto:me@reloadlife.me)
-* if you liked it star project to support me and if you like me [Get me A cup of coffee](https://zarinp.al/216172)
+* if you liked it star project to support me and if you like me [Get me A cup of coffee](https://zarinp.al/reloadlife.me)
 * enjoy 
 * :)

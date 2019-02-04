@@ -8,26 +8,43 @@
 
 	namespace TelegramBotPHP;
 
-
+	/**
+	 * Class response
+	 * @package TelegramBotPHP
+	 */
 	class response {
 		protected $response;
 		protected $raw;
+
+		/**
+		 * response constructor.
+		 * @param $response
+		 */
 		public function __construct ( $response ) {
 			if (!$response) {
 				$this->response = new \stdClass();
 			}
-			$this->raw = $response;
-			$this->response = $response;
+			$this->response = $this->raw = $response;
 		}
 
+		/**
+		 * @return mixed
+		 */
 		public function getRawBody ( ) {
 			return $this->raw;
 		}
 
+		/**
+		 * @return bool
+		 */
 		public function isOk () {
 			return isset($this->response->isOK)?$this->response->isOK:FALSE;
 		}
 
+		/**
+		 * @param $name
+		 * @return bool
+		 */
 		public function __get($name) {
 			return isset($this->response->result->{$name})?$this->response->result->{$name}:FALSE;
 		}

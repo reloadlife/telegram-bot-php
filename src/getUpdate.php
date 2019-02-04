@@ -86,6 +86,9 @@
 		protected $update;
 		protected $raw;
 
+		/**
+		 * @return \stdClass
+		 */
 		protected function update () {
 			$update = $this->raw = json_decode( file_get_contents( 'php://input' ) );
 			if (!$update ) {
@@ -106,18 +109,31 @@
 			return new \stdClass();
 		}
 
+		/**
+		 * getUpdate constructor.
+		 */
 		public function __construct() {
 			$this->update = $this->update();
 		}
 
+		/**
+		 * @return mixed
+		 */
 		public function getRaw () {
 			return $this -> raw;
 		}
 
+		/**
+		 * @return \stdClass
+		 */
 		public function getUpdates() {
 			return $this->update;
 		}
 
+		/**
+		 * @param $name
+		 * @return bool|\stdClass
+		 */
 		public function __get($name) {
 			if ( $name == 'update' ) {
 				return $this->update;
@@ -125,14 +141,27 @@
 			return (isset($this->update->{$name})?$this->update->{$name}:false);
 		}
 
+		/**
+		 * @param $name
+		 * @param $value
+		 */
 		public function __set ( $name, $value ) {
 			$this->update->{$name} = $value;
 		}
 
+		/**
+		 * @param $name
+		 * @return bool
+		 */
 		public function __isset($name) {
 			return (isset($this->update->{$name})?true:false);
 		}
 
+		/***
+		 * @param $name
+		 * @param $arguments
+		 * @return bool
+		 */
 		public function __call($name, $arguments) {
 			return false;
 		}

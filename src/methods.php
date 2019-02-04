@@ -14,7 +14,7 @@
 	use TelegramBotPHP\types\ChatMember;
 
 	/**
-	 * class Methods
+	 * class methods
 	 * @method response|User getMe ( array $array = [] );
 	 * @method response|Message getUpdates ( array $array );
 	 * @method response setWebhook ( array $array  );
@@ -78,7 +78,7 @@
 	 * @link https://core.telegram.org/api/bots
 	 */
 
-	class Methods {
+	class methods {
 		protected $AccessToken;
 		protected static $Token;
 		protected $url = 'https://api.telegram.org/bot';
@@ -147,35 +147,64 @@
 			'getGameHighScores',
 		];
 
+		/**
+		 * Methods constructor.
+		 * @param $AccessToken
+		 */
 		public function __construct ( $AccessToken ) {
-			$this->AccessToken = $AccessToken;
-			self::$Token = $AccessToken;
+			$this->AccessToken = self::$Token = $AccessToken;
 		}
 
+		/**
+		 * @param $name
+		 * @param $value
+		 */
 		public function __set ( $name, $value ) {
 			$this->parameters[$name] = $value;
 		}
 
+		/**
+		 * @param $name
+		 */
 		public function __unset ( $name ) {
 			unset($this->parameters[$name]);
 		}
 
-		public function setMethod ( string $Method ): void {
-			$this -> Method = $Method;
+		/**
+		 * @param string $Method
+		 * @return string
+		 */
+		public function setMethod ( string $Method ) {
+			return $this -> Method = $Method;
 		}
 
+		/**
+		 * @param $parameters
+		 * @return array
+		 */
 		public function parameters ( $parameters ) {
-			$this->parameters = $parameters + $this->parameters;
+			return $this->parameters = $parameters + $this->parameters;
 		}
 
+		/**
+		 * @param $parameters
+		 * @return mixed
+		 */
 		public function setParameters ( $parameters ) {
-			$this->parameters = $parameters;
+			return $this->parameters = $parameters;
 		}
 
+		/**
+		 * @return array
+		 */
 		public function empty () {
-			$this->parameters = [] ;
+			return $this->parameters = [] ;
 		}
 
+		/**
+		 * @param $text
+		 * @return mixed
+		 */
 		public function parse_markdown ( $text ) {
 			$text = str_replace('[', '\\[', $text);
 			$text = str_replace('_', '\\_', $text);
@@ -201,8 +230,6 @@
 				sleep( 5 );
 				return false;
 			} elseif ( $http_code != 200 ) {
-				// $response = json_decode( $response );
-				// $response -> isOK = FALSE;
 				throw new \Exception( $response, $http_code );
 			} else {
 				$response = json_decode( $response );

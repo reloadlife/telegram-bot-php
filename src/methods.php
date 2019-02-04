@@ -4,11 +4,14 @@
 	 * @copyright 2018-2019 ReloadLife <me@reloadlife.me>
 	 * @license   https://opensource.org/licenses/AGPL-3.0 AGPLv3
 	 *
-	 * @link      https://reloadlife.me/TelegramLibraries
 	 */
 
 	namespace TelegramBotPHP;
 
+	use TelegramBotPHP\types\User;
+	use TelegramBotPHP\types\Message;
+	use TelegramBotPHP\types\Chat;
+	use TelegramBotPHP\types\ChatMember;
 
 	/**
 	 * class Methods
@@ -76,44 +79,115 @@
 	 */
 
 	class Methods {
+		protected $AccessToken;
+		protected static $Token;
+		protected $url = 'https://api.telegram.org/bot';
+		protected $Method = 'getMe';
+		protected $parameters = [];
 
-		protected $method;
-		protected $parameters;
-		protected $Token;
+		protected $methods = [
+			'getMe',
+			'getUpdates',
+			'setWebhook',
+			'deleteWebhook',
+			'getWebhookInfo',
+			'sendMessage',
+			'forwardMessage',
+			'sendPhoto',
+			'sendAudio',
+			'sendDocument',
+			'sendVideo',
+			'sendVoice',
+			'sendVideoNote',
+			'sendMediaGroup',
+			'sendLocation',
+			'editMessageLiveLocation',
+			'stopMessageLiveLocation',
+			'sendVenue',
+			'sendContact',
+			'sendAnimation',
+			'sendChatAction',
+			'getUserProfilePhotos',
+			'getFile',
+			'kickChatMember',
+			'unbanChatMember',
+			'restrictChatMember',
+			'promoteChatMember',
+			'exportChatInviteLink',
+			'setChatPhoto',
+			'deleteChatPhoto',
+			'setChatTitle',
+			'setChatDescription',
+			'pinChatMessage',
+			'unpinChatMessage',
+			'leaveChat',
+			'getChat',
+			'getChatAdministrators',
+			'getChatMembersCount',
+			'getChatMember',
+			'setChatStickerSet',
+			'deleteChatStickerSet',
+			'answerCallbackQuery',
+			'editMessageText',
+			'editMessageMedia',
+			'editMessageCaption',
+			'editMessageReplyMarkup',
+			'deleteMessage',
+			'StickerSet',
+			'sendSticker',
+			'getStickerSet',
+			'uploadStickerFile',
+			'createNewStickerSet',
+			'addStickerToSet',
+			'setStickerPositionInSet',
+			'deleteStickerFromSet',
+			'answerInlineQuery',
+			'sendGame',
+			'setGameScore',
+			'getGameHighScores',
+		];
 
-		/**
-		 * Request constructor.
-		 * @param $token
-		 */
-		public function __construct ( $token ) {
-			$this -> Token = $token;
+		public function __construct ( $AccessToken ) {
+			$this->AccessToken = $AccessToken;
+			self::$Token = $AccessToken;
 		}
 
-		/**
-		 * @param $name
-		 * @param $value
-		 */
-		public function __set($name, $value) {
+		public function __set ( $name, $value ) {
 			$this->parameters[$name] = $value;
 		}
 
-		/**
-		 * @param $name
-		 */
-		public function method ( $name ) {
-			$this->method = $name;
+		public function __unset ( $name ) {
+			unset($this->parameters[$name]);
 		}
 
-		/**
-		 * @param $arr
-		 */
-		public function setArrayParam ( $arr ) {
-			$this->parameters = $arr + $this->parameters ;
+		public function setMethod ( string $Method ): void {
+			$this -> Method = $Method;
+		}
+
+		public function parameters ( $parameters ) {
+			$this->parameters = $parameters + $this->parameters;
+		}
+
+		public function setParameters ( $parameters ) {
+			$this->parameters = $parameters;
+		}
+
+		public function empty () {
+			$this->parameters = [] ;
+		}
+
+		public function parse_markdown ( $text ) {
+			$text = str_replace('[', '\\[', $text);
+			$text = str_replace('_', '\\_', $text);
+			$text = str_replace('`', '\\`', $text);
+			$text = str_replace('*', '\\*', $text);
+			return $text;
 		}
 
 		/**
 		 * @param $handle
 		 * @return bool|mixed|string
+		 * @throws \Exception
 		 */
 		private function exec_curl_request ( $handle ) {
 			$response = curl_exec( $handle );
@@ -127,8 +201,9 @@
 				sleep( 5 );
 				return false;
 			} elseif ( $http_code != 200 ) {
-				$response = json_decode( $response );
-				$response -> isOK = FALSE;
+				// $response = json_decode( $response );
+				// $response -> isOK = FALSE;
+				throw new \Exception( $response, $http_code );
 			} else {
 				$response = json_decode( $response );
 				$response -> isOK = TRUE;
@@ -136,14 +211,15 @@
 			return $response;
 		}
 
-		/**
+		/***
 		 * @param bool $Upload
-		 * @return response
+		 * @return bool|mixed|string
+		 * @throws \Exception
 		 */
 		public function exec ( $Upload = false ) {
 			$parameters = array_filter( $this -> parameters );
-			$parameters[ "method" ] = $this -> method;
-			$handle = curl_init( "https://api.telegram.org/bot$this->Token/" );
+			$parameters[ "method" ] = $this -> Method;
+			$handle = curl_init( $this->url.$this->AccessToken."/" );
 			$default = [
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_CONNECTTIMEOUT => 5,
@@ -163,20 +239,55 @@
 				$default[ CURLOPT_HTTPHEADER ] = [ "Content-Type: application/json" ];
 			}
 			curl_setopt_array($handle, $default);
-			// $this -> parameters = [];
-			// uncomment this line to make parameters array empty after each __call
-			return new response ($this -> exec_curl_request( $handle ));
+			return $this -> exec_curl_request( $handle );
+		}
+
+		/***
+		 * @param $name
+		 * @param $params
+		 * @param bool $upload
+		 * @return bool|mixed|string
+		 * @throws \Exception
+		 */
+		public function sendRequest ( $name, $params, $upload = false ) {
+			//if (! in_array(strtolower($name), array_map(function ( $a ) {return strtolower($a);}, $this->methods))){
+			//	throw new \Exception('method not found');
+			//}
+			$this->setMethod ( $name ) ;
+			$this->parameters( $params );
+			return $this->exec( $upload );
+		}
+
+		/***
+		 * @param $name
+		 * @param $params
+		 * @param bool $upload
+		 * @return bool|mixed|string
+		 * @throws \Exception
+		 */
+		public static function sendRequestStatic ( $name, $params, $upload = false ) {
+			$t = new self (self::$Token);
+			return $t->sendRequest( $name, $params, $upload );
 		}
 
 		/**
 		 * @param $name
 		 * @param $arguments
 		 * @return response
+		 * @throws \Exception
 		 */
-		public function __call ($name, $arguments) {
-			$this->method ( $name ) ;
-			$this->setArrayParam( ( isset($arguments[0])?$arguments[0]:[] ) );
-			return $this->exec(( isset($arguments[1])?$arguments[1]:false ));
+		public function __call ( $name, $arguments ) {
+			return new response( $this -> sendRequest( $name, ( isset( $arguments[0] ) ? $arguments[0] : [] ), ( isset( $arguments[1] ) ? $arguments[1] : false ) ) );
+		}
+
+		/***
+		 * @param $name
+		 * @param $arguments
+		 * @return response
+		 * @throws \Exception
+		 */
+		public static function __callStatic ( $name, $arguments ) {
+			return new response( self ::sendRequestStatic( $name, ( isset( $arguments[0] ) ? $arguments[0] : [] ), ( isset( $arguments[1] ) ? $arguments[1] : false ) ) );
 		}
 
 	}

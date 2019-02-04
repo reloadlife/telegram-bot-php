@@ -4,7 +4,6 @@
 	 * @copyright 2018-2019 ReloadLife <me@reloadlife.me>
 	 * @license   https://opensource.org/licenses/AGPL-3.0 AGPLv3
 	 *
-	 * @link      https://reloadlife.me/TelegramLibraries
 	 */
 
 	namespace TelegramBotPHP;
@@ -12,12 +11,17 @@
 
 	class response {
 		protected $response;
-
+		protected $raw;
 		public function __construct ( $response ) {
 			if (!$response) {
 				$this->response = new \stdClass();
 			}
+			$this->raw = $response;
 			$this->response = $response;
+		}
+
+		public function getRawBody ( ) {
+			return $this->raw;
 		}
 
 		public function isOk () {

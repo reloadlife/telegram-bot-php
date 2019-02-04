@@ -6,7 +6,7 @@
 	 *
 	 * @link      https://reloadlife.me/TelegramLibraries
 	 */
-	namespace TelegramBotPHP;
+	namespace TelegramBotPHP\types;
 
 
 	/**

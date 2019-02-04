@@ -4,13 +4,30 @@
 	 * @copyright 2018-2019 ReloadLife <me@reloadlife.me>
 	 * @license   https://opensource.org/licenses/AGPL-3.0 AGPLv3
 	 *
-	 * @link      https://reloadlife.me/TelegramLibraries
 	 */
+
 	namespace TelegramBotPHP;
+
+
+	use TelegramBotPHP\types\Animation;
+	use TelegramBotPHP\types\Audio;
+	use TelegramBotPHP\types\Chat;
+	use TelegramBotPHP\types\Contact;
+	use TelegramBotPHP\types\Document;
+	use TelegramBotPHP\types\Game;
+	use TelegramBotPHP\types\Location;
+	use TelegramBotPHP\types\Message;
+	use TelegramBotPHP\types\MessageEntity;
+	use TelegramBotPHP\types\PhotoSize;
+	use TelegramBotPHP\types\Sticker;
+	use TelegramBotPHP\types\User;
+	use TelegramBotPHP\types\Venue;
+	use TelegramBotPHP\types\Video;
+	use TelegramBotPHP\types\VideoNote;
+	use TelegramBotPHP\types\Voice;
 
 	/**
 	 * Class getUpdate
-	 * @package TelegramBotPHP
 	 * @property integer message_id
 	 * @property User from
 	 * @property integer date
@@ -67,38 +84,53 @@
 	class getUpdate {
 
 		protected $update;
+		protected $raw;
 
 		protected function update () {
-			$update = json_decode( file_get_contents( 'php://input' ) );
+			$update = $this->raw = json_decode( file_get_contents( 'php://input' ) );
+			if (!$update ) {
+				return new \stdClass();
+			}
 			$map = [
 				'message',
 				'callback_query',
 				'edited_message',
-				'inline_query',
-				'chosen_inline_result',
-			//	'channel_post',
-			//	'edited_channel_post',
-			//	'shipping_query',
-			//	'pre_checkout_query',
+				// 'inline_query',
+				// 'chosen_inline_result',
 			];
-			# comment/uncomment updateType to ignore/handle them
-			# thanks to @SubScript :)
-			foreach ($map as $m) {
-				if (isset( $update ->{$m} )) {
-					$update = $update->{$m};
-					break;
+			foreach ( $map as $updateType ) {
+				if (isset($update->{$updateType})) {
+					return $update->{$updateType};
 				}
 			}
-			if (!isset($update)) $update = new \stdClass();
-			return $update;
+			return new \stdClass();
 		}
 
 		public function __construct() {
 			$this->update = $this->update();
 		}
 
+		public function getRaw () {
+			return $this -> raw;
+		}
+
+		public function getUpdates() {
+			return $this->update;
+		}
+
 		public function __get($name) {
+			if ( $name == 'update' ) {
+				return $this->update;
+			}
 			return (isset($this->update->{$name})?$this->update->{$name}:false);
+		}
+
+		public function __set ( $name, $value ) {
+			$this->update->{$name} = $value;
+		}
+
+		public function __isset($name) {
+			return (isset($this->update->{$name})?true:false);
 		}
 
 		public function __call($name, $arguments) {

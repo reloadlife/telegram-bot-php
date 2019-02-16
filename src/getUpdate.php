@@ -42,13 +42,13 @@
 	 * @property string media_group_id
 	 * @property string author_signature
 	 * @property string text
-	 * @property array|MessageEntity entities
-	 * @property array|MessageEntity caption_entities
+	 * @property MessageEntity[] entities
+	 * @property MessageEntity[] caption_entities
 	 * @property Audio audio
 	 * @property Document document
 	 * @property Animation animation
 	 * @property Game game
-	 * @property array|PhotoSize photo
+	 * @property PhotoSize[] photo
 	 * @property Sticker sticker
 	 * @property Video video
 	 * @property Voice voice
@@ -57,10 +57,10 @@
 	 * @property Contact contact
 	 * @property Location location
 	 * @property Venue venue
-	 * @property array new_chat_members
+	 * @property User[] new_chat_members
 	 * @property User left_chat_member
 	 * @property string new_chat_title
-	 * @property array|PhotoSize new_chat_photo
+	 * @property PhotoSize[] new_chat_photo
 	 * @property bool delete_chat_photo
 	 * @property bool group_chat_created
 	 * @property bool supergroup_chat_created

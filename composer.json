@@ -1,35 +1,35 @@
 {
-  "name": "reloadlife/php-telegram-bot",
-  "description": "PHP Telegram Bot.",
-  "type": "project",
-  "license": "AGPL-3.0-only",
-  "homepage": "https://reloadlife.me/Telegram-Bot-PHP",
-  "keywords": [
-    "telegram",
-    "client",
-    "PHP",
-    "api",
-    "tg-bot",
-    "telegram-bot",
-    "bot", 
-    "sdk"
-  ],
-  "require": {
-    "php": ">=7.0",
-    "ext-curl": "*",
-    "ext-mbstring": "*",
-    "ext-json": "*",
-    "ext-xml": "*"
-  },
-  "authors": [
-    {
-      "name": "MohammadMahdi Afshar",
-      "email": "me@reloadlife.me"
-    }
-  ],
-  "autoload": {
-    "psr-4": {
-      "TelegramBotPHP\\": "src/"
-    }
-  }
+	"name"       : "reloadlife/php-telegram-bot",
+	"description": "PHP Telegram Bot.",
+	"type"       : "library",
+	"license"    : "AGPL-3.0-only",
+	"homepage"   : "https://reloadlife.me/Telegram-Bot-PHP",
+	"keywords"   : [
+		"telegram",
+		"client",
+		"PHP",
+		"api",
+		"tg-bot",
+		"telegram-bot",
+		"bot",
+		"sdk"
+	],
+	"require"    : {
+		"ext-curl"         : "*",
+		"ext-mbstring"     : "*",
+		"ext-json"         : "*",
+		"ext-xml"          : "*",
+		"guzzlehttp/guzzle": "dev-master"
+	},
+	"authors"    : [
+		{
+			"name" : "MohammadMahdi Afshar",
+			"email": "me@reloadlife.me"
+		}
+	],
+	"autoload"   : {
+		"psr-4": {
+			"TelegramBotPHP\\": "src/"
+		}
+	}
 }

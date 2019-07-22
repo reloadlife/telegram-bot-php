@@ -86,27 +86,34 @@
 		
 		protected $update;
 		protected $raw;
+		protected $type;
 		
 		/**
+		 * @param $typesToGet
 		 * @return \stdClass
 		 */
-		protected function update () {
+		protected function update ( $typesToGet = [
+				'message',
+				'callback_query',
+				'edited_message',
+				'inline_query',
+				'chosen_inline_result',
+				'channel_post',
+				'edited_channel_post',
+				'shipping_query',
+				'pre_shipping_query',
+				'pool',
+			] ) {
 			$update = $this -> raw = json_decode ( file_get_contents ( 'php://input' ) );
 			if ( !$update )
 				{
 					return new \stdClass();
 				}
-			$map = [
-				'message',
-				'callback_query',
-				'edited_message',
-				'inline_query',
-				// 'chosen_inline_result',
-			];
-			foreach ( $map as $updateType )
+			foreach ( $typesToGet as $updateType )
 				{
 					if ( isset( $update ->{$updateType} ) )
 						{
+							$this->type = $updateType;
 							return $update ->{$updateType};
 						}
 				}
@@ -125,6 +132,13 @@
 		 */
 		public function getRaw () {
 			return $this -> raw;
+		}
+		
+		/**
+		 * @return string
+		 */
+		public function getRaw () {
+			return $this -> type;
 		}
 		
 		/**

@@ -137,7 +137,7 @@
 		/**
 		 * @return string
 		 */
-		public function getRaw () {
+		public function getType () {
 			return $this -> type;
 		}
 		

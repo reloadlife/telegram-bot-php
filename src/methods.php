@@ -248,11 +248,11 @@
 						}
 				} catch ( RequestException $e )
 				{
-					error_log ( "{$e->getTraceAsString ()}" . "||" . $e -> getResponse () -> getBody () );
+				//	error_log ( "{$e->getTraceAsString ()}" . "||" . $e -> getResponse () -> getBody () );
 					return false;
 				} catch ( GuzzleException $e )
 				{
-					error_log ( "$e" . "||" . $e -> getMessage () );
+				//	error_log ( "$e" . "||" . $e -> getMessage () );
 					return false;
 				}
 		}
